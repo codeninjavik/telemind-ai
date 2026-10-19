@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.netlify/
+.env
+.env.*
+!.env.example
+*.session
+*.sqlite
+*.log
+.DS_Store
+release/
+termux/apply_business.py
+termux/__pycache__/
+__pycache__/

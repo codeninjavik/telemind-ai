@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 13 13 18;
+  --panel: 21 21 29;
+  --raised: 29 29 40;
+  --line: 44 44 60;
+  --ink: 236 236 244;
+  --mute: 160 160 182;
+  --violet: 139 92 246;
+  --blue: 47 107 255;
+  --ok: 52 211 153;
+  --warn: 251 191 36;
+  --bad: 248 113 113;
+}
+html, body, #root { height: 100%; }
+body { @apply bg-bg font-sans text-ink antialiased; font-size: 15px; line-height: 1.5; }
+h1, h2, h3 { @apply font-display; letter-spacing: -0.01em; }
+*:focus-visible { outline: 2px solid rgb(var(--blue)); outline-offset: 2px; border-radius: 8px; }
+::selection { background: rgb(var(--violet) / 0.45); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 8px; }
+
+@layer components {
+  .card { @apply rounded-xl2 border border-line bg-panel; }
+  .btn { @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-xl border border-line bg-raised px-4 text-sm font-semibold text-ink transition hover:border-violet/60 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply border-transparent text-white; background: linear-gradient(135deg, rgb(var(--violet)), rgb(var(--blue))); }
+  .btn-primary:hover { filter: brightness(1.12); }
+  .btn-danger { @apply border-bad/50 bg-bad/10 text-bad hover:border-bad; }
+  .input { @apply w-full rounded-xl border border-line bg-bg px-3 py-2 text-sm text-ink placeholder:text-mute/70 focus:border-violet; min-height: 40px; }
+  .label { @apply mb-1 block text-sm font-medium text-ink; }
+  .hint { @apply mt-1 text-xs text-mute; }
+}
+
+@keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgb(var(--ok) / .55); } 100% { box-shadow: 0 0 0 10px rgb(var(--ok) / 0); } }
+.live-dot { animation: pulseRing 1.8s ease-out infinite; }
+.auto-dot { animation: pulseRing 1.2s ease-out infinite; background: rgb(var(--bad)); }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .28s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
