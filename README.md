@@ -8,10 +8,15 @@ An AI assistant for the replies in your own private Telegram chats. It runs on *
 
 | Part | Tested |
 | --- | --- |
-| API, auth, CSRF, rules, safety checks, draft/approve/auto flows, send-once guarantee | Yes, 30 automated tests with a fake Telegram and a fake AI (`npm test`) |
+| API, auth, CSRF, rules, safety checks, draft/approve/auto flows, send-once guarantee | Yes, 42 automated tests with a fake Telegram and a fake AI (`npm test`) |
 | Dashboard UI: sign-in, navigation, settings, automatic-mode warning | Yes, in a browser against `netlify dev` |
-| **Real Telegram login, reading and sending messages (GramJS)** | **No. Needs your account and API credentials. Try it in AI draft mode first.** |
-| **Real Groq replies** | **No. Needs your Groq key.** |
+| Real Telegram login and live message reading/drafting (GramJS) | Yes, by the author on their own account |
+| Real Groq replies | Yes, with the author's keys |
+| Long unattended automatic mode, many users at once | **Not soak-tested.** Start with AI draft mode and watch the Inbox. |
+
+## Also in this repo
+
+`termux/` is a single-file Python version (Telethon) that runs 24/7 on a phone with Termux and answers instantly, with all settings changeable from Telegram's Saved Messages. See `termux/TERMUX.md`. A standalone copy lives at <https://github.com/codeninjavik/telemind-termux>.
 
 ## How it works on Netlify
 
@@ -81,3 +86,15 @@ Automatic replies are held back for your review when any of these is true: the c
 ## Desktop app (optional)
 
 Not included. If you want a Windows app later, wrap the built `dist/` in Electron and point it at your Netlify site.
+
+## Contributing
+
+Issues and pull requests are welcome. Run `npm test` before opening a PR, and never commit keys, sessions or `.env` files.
+
+## Disclaimer
+
+This is an unofficial tool, not made or endorsed by Telegram or Groq. Automating an account can get it limited if misused; you are responsible for how you use it. Only connect accounts you own or are authorized to manage.
+
+## License
+
+[MIT](LICENSE)
